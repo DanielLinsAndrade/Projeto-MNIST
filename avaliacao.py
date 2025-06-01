@@ -1,4 +1,4 @@
-# aaaaa
+# Função de Avaliação do Treinamento
 import numpy as np
 
 
