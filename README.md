@@ -16,36 +16,36 @@ Este projeto implementa uma rede neural do tipo Perceptron Multicamadas (MLP) do
 
 ## Como Executar
 
-1. Clone o repositório:
-   ~~~
-   git clone https://github.com/DanielLinsAndrade/Projeto-MNIST.git
-   cd Projeto-MNIST
-   ~~~
-2. Instale as dependências:
-   ~~~
-   pip install -r requirements.txt
-   ~~~
-   
-## 3. Verifique se os seguintes arquivos estão na pasta `dados/`:
+   1. Clone o repositório:
+      ~~~
+      git clone https://github.com/DanielLinsAndrade/Projeto-MNIST.git
+      cd Projeto-MNIST
+      ~~~
+   2. Instale as dependências:
+      ~~~
+      pip install -r requirements.txt
+      ~~~
 
-- `train-images-idx3-ubyte.gz`
-- `train-labels-idx1-ubyte.gz`
-- `t10k-images-idx3-ubyte.gz`
-- `t10k-labels-idx1-ubyte.gz`
+   3. Verifique se os seguintes arquivos estão na pasta `dados/`:
 
-Você pode baixar os arquivos diretamente dos seguintes links:
+      - `train-images-idx3-ubyte.gz`
+      - `train-labels-idx1-ubyte.gz`
+      - `t10k-images-idx3-ubyte.gz`
+      - `t10k-labels-idx1-ubyte.gz`
 
-- [train-images-idx3-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/train-images-idx3-ubyte.gz)
-- [train-labels-idx1-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/train-labels-idx1-ubyte.gz)
-- [t10k-images-idx3-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-images-idx3-ubyte.gz)
-- [t10k-labels-idx1-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-labels-idx1-ubyte.gz)
+      Você pode baixar os arquivos diretamente dos seguintes links:
 
-Esses arquivos são mantidos no repositório MNIST do _Department of Communications Engineering University of Paderborn_, disponível em: [fgnt/mnist](https://github.com/fgnt/mnist) no GitHub.
+      - [train-images-idx3-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/train-images-idx3-ubyte.gz)
+      - [train-labels-idx1-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/train-labels-idx1-ubyte.gz)
+      - [t10k-images-idx3-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-images-idx3-ubyte.gz)
+      - [t10k-labels-idx1-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-labels-idx1-ubyte.gz)
 
-## 4. Execute o script principal:
-   ~~~
-   python main.py
-   ~~~
+      Esses arquivos são mantidos no repositório MNIST do _Department of Communications Engineering University of Paderborn_, disponível em: [fgnt/mnist](https://github.  com/fgnt/mnist) no GitHub.
+
+   4. Execute o script principal:
+      ~~~
+      python main.py
+      ~~~
 ------------------------------------------------------------
 
 ## Estrutura do Projeto
