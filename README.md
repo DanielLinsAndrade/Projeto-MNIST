@@ -40,7 +40,7 @@ Este projeto implementa uma rede neural do tipo Perceptron Multicamadas (MLP) do
       - [t10k-images-idx3-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-images-idx3-ubyte.gz)
       - [t10k-labels-idx1-ubyte.gz](https://raw.githubusercontent.com/fgnt/mnist/master/t10k-labels-idx1-ubyte.gz)
 
-      Esses arquivos são mantidos no repositório MNIST do _Department of Communications Engineering University of Paderborn_, disponível em: [fgnt/mnist](https://github.  com/fgnt/mnist) no GitHub.
+      Esses arquivos são mantidos no repositório MNIST do _Department of Communications Engineering University of Paderborn_, disponível em: [fgnt/mnist](https://github.com/fgnt/mnist) no GitHub.
 
    4. Execute o script principal:
       ~~~
@@ -53,7 +53,7 @@ Este projeto implementa uma rede neural do tipo Perceptron Multicamadas (MLP) do
 ```
 Projeto-MNIST/
 ├── dados/
-├── train-images-idx3-ubyte.gz
+│   ├── train-images-idx3-ubyte.gz
 │   ├── train-labels-idx1-ubyte.gz
 │   ├── t10k-images-idx3-ubyte.gz
 │   └── t10k-labels-idx1-ubyte.gz
@@ -64,6 +64,7 @@ Projeto-MNIST/
 ├── main.py
 │
 ├── README.md
+├── LICENSE
 ├── requirements.txt
 └── .gitignore
 ```
