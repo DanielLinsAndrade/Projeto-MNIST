@@ -63,38 +63,50 @@ class MLP:
 
     def backward(self, X, y):
         # Propragação dos resultados para ajustar a rede!
-        m = y.shape[0]
+        m = y.shape[0]  # Esse é o número de exemplos dentro do batch
+        # Isso é como a rede vai entender qual é o número, onde ele vai
+        # correponder a posição dentro do vetor. Primeiro cria a matriz
+        # cheia de zeros com m(num exemplos) e 10 colunas (qtd classes)
         y_one_hot = np.zeros((m, 10))
+        # e depois essa linha coloca 1 na coluna correta da classe de cada
+        # exemplo (3 = 0001000000)
         y_one_hot[np.arange(m), y] = 1
-
+        # Esse é o erro da saída, previsão - verdade
         dz2 = self.a2 - y_one_hot
+        # Esses são os gradientes para peso e bias da segunda camada
         dw2 = self.a1.T @ dz2 / m
         db2 = np.sum(dz2, axis=0, keepdims=True) / m
-
+        # Calculo do erro de cada neurônio da camada oculta
         dz1 = dz2 @ self.w2.T * relu_derivada(self.z1)
+        # Variação dos pesos da camada oculta
         dw1 = X.T @ dz1 / m
+        # Calculo do gradiente do bias da camada oculta
         db1 = np.sum(dz1, axis=0, keepdims=True) / m
 
-        # Atualiza pesos
+        # Atualiza pesos, subtraindo o gradiente vezes a taxa de aprendizado,
+        # melhorando as previsões
         self.w2 -= self.lr * dw2
         self.b2 -= self.lr * db2
         self.w1 -= self.lr * dw1
         self.b1 -= self.lr * db1
 
     def treinar(self, X, y, epocas, batch_size=64):
-        historico_perda = []
+        # Ela recebe os dados, rótulos, num epocas e tam batch
+        historico_perda = []  # Guarda a perda de cada época
         for epoca in range(epocas):
             indices = np.arange(X.shape[0])
-            np.random.shuffle(indices)
-            X, y = X[indices], y[indices]
+            np.random.shuffle(indices)  # embaralhando os dados
+            X, y = X[indices], y[indices]  # Reorganizando dados e rótulos
 
+            # Treinamento em conjunto de dados (batches)
             for i in range(0, X.shape[0], batch_size):
                 X_batch = X[i:i+batch_size]
                 y_batch = y[i:i+batch_size]
 
-                predicoes = self.forward(X_batch)
-                self.backward(X_batch, y_batch)
+                predicoes = self.forward(X_batch)  # passo foward
+                self.backward(X_batch, y_batch)  # passo backward
 
+            # Calculo da perda total após cada época ser analisada
             predicoes = self.forward(X)
             perda = cross_entropy(predicoes, y)
             historico_perda.append(perda)
