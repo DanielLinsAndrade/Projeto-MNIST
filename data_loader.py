@@ -35,6 +35,9 @@ def carregar_imagens(caminho_arquivo):
         imagens = imagens.reshape(num_imagens, linhas * colunas)
         imagens = imagens.astype(np.float32) / 255.0
         return imagens
+# a normalização é importante para o funcionamento da rede neural
+# pois ela garante que os valores dos pixels estejam entre 0 e 1,
+# o que ajuda na convergência do treinamento e evita problemas de escala
 
 # Agora realizando a leitura dos rótulos:
 # Novamente fazendo uma leitura binária no arquivo
