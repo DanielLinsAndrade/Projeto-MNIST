@@ -24,6 +24,8 @@ historico = modelo.treinar(X_train, y_train, 10)
 # o hidden_size=128 define o número de neurônios na camada oculta
 
 
+# O hidden_size=128 define o número de neurônios na camada oculta
+# A taxa_aprendizado=0.1 controla o tamanho dos passos durante o treinamento
 # Faz o cálculo da precisão dos testes da
 # rede com o passar das épocas com 4 casas de precisão
 pred_test = modelo.forward(X_test)
@@ -38,6 +40,7 @@ matriz = matriz_confusao(y_test, y_predito)
 exibir_matriz_confusao(matriz)
 # a matriz de confusão é uma tabela que mostra a performance do modelo
 
+# A matriz de confusão é uma ferramenta importante para análise de erros
 # Estrutura o gráfico no matplot e exibe ele por fim
 # exibe o gráfico baseado no histórico montado durante
 # as épocas de treinamento da rede.
@@ -47,4 +50,8 @@ plt.xlabel("Época")
 plt.ylabel("Perda")
 plt.grid(True)
 plt.show()
+
 # Exibe a acurácia final da rede
+
+# este gráfico deve mostrar uma curva descendente, indicando que a perda
+# diminui ao longo do treinamento.
