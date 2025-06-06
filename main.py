@@ -21,6 +21,8 @@ X_train, y_train, X_test, y_test = carregar_dados_mnist()
 # recebe o histórico de perdas conforme o passar das épocas
 modelo = MLP(hidden_size=128, taxa_aprendizado=0.1)
 historico = modelo.treinar(X_train, y_train, 10)
+# o hidden_size=128 define o número de neurônios na camada oculta
+
 
 # Faz o cálculo da precisão dos testes da
 # rede com o passar das épocas com 4 casas de precisão
@@ -34,6 +36,7 @@ print(f"Acurácia no teste: {acc:.4f}")
 y_predito = pred_test.argmax(axis=1)
 matriz = matriz_confusao(y_test, y_predito)
 exibir_matriz_confusao(matriz)
+# a matriz de confusão é uma tabela que mostra a performance do modelo
 
 # Estrutura o gráfico no matplot e exibe ele por fim
 # exibe o gráfico baseado no histórico montado durante
@@ -44,3 +47,4 @@ plt.xlabel("Época")
 plt.ylabel("Perda")
 plt.grid(True)
 plt.show()
+# Exibe a acurácia final da rede

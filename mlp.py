@@ -99,6 +99,8 @@ class MLP:
             indices = np.arange(X.shape[0])
             np.random.shuffle(indices)  # embaralhando os dados
             X, y = X[indices], y[indices]  # Reorganizando dados e rótulos
+            # o embaralhamento dos dados é crucial para evitar viés no treinamento,
+            # garantindo que a rede aprenda de forma mais robusta e generalizada.
 
             # Treinamento em conjunto de dados (batches)
             for i in range(0, X.shape[0], batch_size):
@@ -109,7 +111,7 @@ class MLP:
                 self.backward(X_batch, y_batch)  # passo backward
 
             # Calculo da perda total após cada época ser analisada
-            predicoes = self.forward(X)
+            predicoes = self.forward(X)  # passo foward
             perda = cross_entropy(predicoes, y)
             historico_perda.append(perda)
             print(f"Época {epoca+1}/{epocas} - Perda: {perda:.4f}")

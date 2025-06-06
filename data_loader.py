@@ -27,7 +27,7 @@ import numpy as np
 # Realiza a leitura dos pixels das imagens e converte isso pra um array numpy.
 # Após isso, usando o reshape, se tem um array com os pixels e agora separa nos valores
 # para imagens individuais (pixels da imagem, valor de linhas e colunas de forma linear).
-# Nomraliza os dados convertendo para valores em float de 0 a 255.
+# Normaliza os dados convertendo para valores em float de 0 a 255.
 def carregar_imagens(caminho_arquivo):
     with gzip.open(caminho_arquivo, 'rb') as f:
         _, num_imagens, linhas, colunas = struct.unpack(">IIII", f.read(16))
@@ -35,6 +35,7 @@ def carregar_imagens(caminho_arquivo):
         imagens = imagens.reshape(num_imagens, linhas * colunas)
         imagens = imagens.astype(np.float32) / 255.0
         return imagens
+        # a normalização é crucial para o desempenho da rede neural
 
 # Agora realizando a leitura dos rótulos:
 # Novamente fazendo uma leitura binária no arquivo
