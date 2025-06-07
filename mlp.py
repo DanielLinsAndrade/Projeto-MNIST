@@ -1,39 +1,6 @@
 import numpy as np
-
-
-def relu(x):
-    # A função ReLU recebe uma matriz ou vetor x, e para cada elemento que ela
-    # recebe, retorna ele mesmo se for maior ou igual a 0, senão, retorna 0.
-    return np.maximum(0, x)
-
-
-def relu_derivada(x):
-    # Essa versão do ReLU retorna 1 para elementos maiores que 0, o astype
-    # transforma o resultado em um número decimal.
-    return (x > 0).astype(float)
-
-
-def softmax(x):
-    # A função softmax transforma um vetor de números em probabilidades que
-    # somam 1. Para evitar estouro numérico, subtraímos o maior valor de cada
-    # linha (axis=1) da matriz. O keepdims=True mantém a forma original para a
-    # operação funcionar direitinho. Depois calculamos a exponencial desses
-    # valores ajustados e dividimos cada elemento pela soma da linha,
-    # garantindo que a saída seja uma distribuição de probabilidade.
-    exp = np.exp(x - np.max(x, axis=1, keepdims=True))
-    return exp / np.sum(exp, axis=1, keepdims=True)
-
-
-def cross_entropy(predicoes, rotulos):
-    # A função de perda mede o quão ruim a previsão da rede está da resposta
-    # correta, m é o número de exemplos, a quantidade de dados. O log_probs
-    # é o logaritmo da matriz de probabilidades chamada de predições, onde
-    # ela pega pra cada exemplo a probabilidade do acerto. O + 1e-9 evita
-    # log de 0. O retorno é a soma de todos os valores de perda, o log_probs
-    # dividida pelo número de exemplos, quanto menor o valor, melhor.
-    m = rotulos.shape[0]
-    log_probs = -np.log(predicoes[range(m), rotulos] + 1e-9)
-    return np.sum(log_probs) / m
+from ativacoes import relu, relu_derivada, softmax
+from perdas import cross_entropy
 
 
 class MLP:
@@ -48,10 +15,10 @@ class MLP:
         # bias
         self.w2 = np.random.randn(hidden_size, output_size) * 0.01
         self.b2 = np.zeros((1, output_size))
-        #  multiplicação por 0.01 nos pesos iniciais é uma técnica importante
+        # Multiplicação por 0.01 nos pesos iniciais é uma técnica importante
         # para evitar que os valores fiquem muito grandes no início do treinamento,
         # o que poderia causar saturação dos neurônios e dificultar o aprendizado.
-        
+
     def forward(self, X):
         # Essa é a propragação para frente!
         # Resultado da multiplicação dos dados pelos pesoss + bias
@@ -63,7 +30,7 @@ class MLP:
         # Aplicando softmax pra transformar os a entrada em probabilidades
         self.a2 = softmax(self.z2)
         return self.a2
-    
+
 
     def backward(self, X, y):
         # Propragação dos resultados para ajustar a rede!
@@ -93,7 +60,7 @@ class MLP:
         self.b2 -= self.lr * db2
         self.w1 -= self.lr * dw1
         self.b1 -= self.lr * db1
-        
+
         # processo conhecido como Gradient Descent, onde se ajusta os parâmetros
         # na direção oposta ao gradiente para minimizar a função de perda.
 
@@ -104,7 +71,7 @@ class MLP:
             indices = np.arange(X.shape[0])
             np.random.shuffle(indices)  # embaralhando os dados
             X, y = X[indices], y[indices]  # Reorganizando dados e rótulos
-            
+
             # o embaralhamento dos dados é crucial para evitar viés no treinamento
             # e ajuda a rede a generalizar melhor, evitando que ela memorize a ordem dos exemplos
 
@@ -120,5 +87,5 @@ class MLP:
             predicoes = self.forward(X)
             perda = cross_entropy(predicoes, y)
             historico_perda.append(perda)
-            print(f"Época {epoca+1}/{epocas} - Perda: {perda:.4f}")
+            print(f"Época {epoca+1}/{epocas} - Perda: {perda:.8f}")
         return historico_perda
