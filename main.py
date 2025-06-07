@@ -23,7 +23,7 @@ X_train, y_train, X_test, y_test = carregar_dados_mnist()
 # taxa de tamanho da camada oculta e taxa de aprendizado
 # recebe o histórico de perdas conforme o passar das épocas
 modelo = MLP(hidden_size=128, taxa_aprendizado=0.1)
-historico = modelo.treinar(X_train, y_train, 10)
+historico = modelo.treinar(X_train, y_train, 100)
 
 # Faz o cálculo da precisão dos testes da
 # rede com o passar das épocas com 4 casas de precisão
