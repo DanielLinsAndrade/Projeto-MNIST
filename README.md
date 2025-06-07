@@ -58,9 +58,12 @@ Projeto-MNIST/
 │   ├── t10k-images-idx3-ubyte.gz
 │   └── t10k-labels-idx1-ubyte.gz
 │
+├── ativacoes.py
 ├── avaliacao.py
 ├── data_loader.py
 ├── mlp.py
+├── perdas.py
+├── visualizacao.py
 ├── main.py
 │
 ├── README.md
@@ -70,8 +73,9 @@ Projeto-MNIST/
 ```
 ------------------------------------------------------------
 
-## Exemplos de Saída
+## Saídas do Projeto
 
-- Acurácia final da rede no conjunto de teste
-- Matriz de confusão exibida no terminal
-- Gráfico da função de perda por época
+- Acurácia final da rede no conjunto de teste.
+- Matriz de confusão exibida no terminal.
+- Gráfico da função de perda por época.
+- Comparação com imagens entre a predição da rede e os arquivos originais.
