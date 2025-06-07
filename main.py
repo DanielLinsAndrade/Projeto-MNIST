@@ -6,8 +6,11 @@
 # data_loader = importanto do módulo de carregar os dados a função de carregar os arquivos.
 # MLP = importanto a classe MLP do módulo do Multilayer Perceptron.
 # matplotlib.pyplot = importando biblioteca pra ajudar a plotar os dados gerados pela rede.
+# visualizacao = importando o módulo onde tem a função para comparar as imagens
+# previstas com as não previstas.
 from avaliacao import calcular_acuracia, matriz_confusao, exibir_matriz_confusao
 from data_loader import carregar_dados_mnist
+from visualizacao import mostrar_previsoes
 from mlp import MLP
 
 import matplotlib.pyplot as plt
@@ -20,7 +23,7 @@ X_train, y_train, X_test, y_test = carregar_dados_mnist()
 # taxa de tamanho da camada oculta e taxa de aprendizado
 # recebe o histórico de perdas conforme o passar das épocas
 modelo = MLP(hidden_size=128, taxa_aprendizado=0.1)
-historico = modelo.treinar(X_train, y_train, 10)
+historico = modelo.treinar(X_train, y_train, 80)
 
 # Faz o cálculo da precisão dos testes da
 # rede com o passar das épocas com 4 casas de precisão
@@ -34,6 +37,10 @@ print(f"Acurácia no teste: {acc:.4f}")
 y_predito = pred_test.argmax(axis=1)
 matriz = matriz_confusao(y_test, y_predito)
 exibir_matriz_confusao(matriz)
+
+# Após ter as variáveis de rótulo prontas, chama uma função
+# para visualizar a previsão da rede mostrando os números.
+mostrar_previsoes(X_test, y_test, y_predito, quantidade=25)
 
 # Estrutura o gráfico no matplot e exibe ele por fim
 # exibe o gráfico baseado no histórico montado durante
